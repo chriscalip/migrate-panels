@@ -1,0 +1,45 @@
+# Information Useful for Development.
+
+## Database Sources :
+
+table : page_manager_pages
+columns : pid,name,task,path, ..., conf
+aka : custom pages
+
+table : page_manager_handlers
+columns : did,name,task,subtask,handler, ..., conf
+aka : variants
+
+table : panels_display
+columns : did,layout, layout_settings, panel_settings
+aka : use of layouts per variant
+
+table : panels_pane
+columns : pid,did,panel,type,subtype, ..., configuration
+aka : use of content types (as in panels content type) per variant
+column sample values :
+  panel : top|bottom|right|left
+  type : block|views_pane|views
+  subtype : userlogin|articles_panel_pane_1|articles|system_powered_by
+record sample values :
+  panel_pane->panel : top
+  panel_pane->type  : views_pane
+  panel_pane->subtype  : articles_panels_pane_1
+
+## Strategy :
+
+Handle additional pages (In code) through hook_mpclue_incode_pages
+Handle necessary migration_maps through hook_mpmm_[type].
+Handle necessary sensible default through hook_mpsd_[type].
+
+## Potential hooks :
+
+hook_mpclue_incode_pages
+hook_mpmm_pages
+hook_mpmm_variants
+hook_mpmm_layouts
+hook_mpmm_panes
+hook_mpsd_pages
+hook_mpsd_variants
+hook_mpsd_layouts
+hook_mpsd_panes
